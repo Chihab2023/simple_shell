@@ -11,59 +11,6 @@
 #include <limits.h>
 #include <fcntl.h>
 #include <errno.h>
-
-int hsh(info_type *, char **);
-int find_builtin(info_type *);
-void find_cmd(info_type *);
-void fork_cmd(info_type *);
-
-int _strlen(char *);
-int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
-
-
-#define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-	0, 0, 0}
-
-/**
- *struct builtin - contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
- */
-typedef struct builtin
-{
-	char *type;
-	int (*func)(info_type *);
-} builtin_table;
-
-
-
-
-
-int is_cmd(info_type *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(info_type *, char *, char *);
-
-
-int loophsh(char **);
-
-
-void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
-
-
-
-
-
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
-int _putchar(char);
-
 /**
  * struct liststr - singly linked list
  * @num: the number field
@@ -76,43 +23,6 @@ typedef struct liststr
 	char *str;
 	struct liststr *next;
 } list_t;
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
-
-
-char **strtow(char *, char *);
-char **strtow2(char *, char);
-
-
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
-
-
-int bfree(void **);
-
-
-int interactive(info_type *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _sti(char *);
-
-
-int _err_sti(char *);
-void print_error(info_type *, char *);
-int print_decimal(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
-
-
-int _myexit(info_type *);
-int _mydir(info_type *);
-int _myhelp(info_type *);
-
-
-int _myhist(info_type *);
-int _myalias(info_type *);
 /**
  *struct passinfo - contains pseudo-arguements to pass into a function,
  *		allowing uniform prototype for function pointer struct
@@ -157,6 +67,98 @@ typedef struct passinfo
 	int readfd;
 	int histcount;
 } info_type;
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+	0, 0, 0}
+
+/**
+ *struct builtin - contains a builtin string and related function
+ *@type: the builtin command flag
+ *@func: the function
+ */
+typedef struct builtin
+{
+	char *type;
+	int (*func)(info_type *);
+} builtin_table;
+
+int hsh(info_type *, char **);
+int find_builtin(info_type *);
+void find_cmd(info_type *);
+void fork_cmd(info_type *);
+
+int _strlen(char *);
+int _strcmp(char *, char *);
+char *starts_with(const char *, const char *);
+char *_strcat(char *, char *);
+
+
+
+
+
+
+
+int is_cmd(info_type *, char *);
+char *dup_chars(char *, int, int);
+char *find_path(info_type *, char *, char *);
+
+
+int loophsh(char **);
+
+
+void _eputs(char *);
+int _eputchar(char);
+int _putfd(char c, int fd);
+int _putsfd(char *str, int fd);
+
+
+
+
+
+char *_strcpy(char *, char *);
+char *_strdup(const char *);
+void _puts(char *);
+int _putchar(char);
+
+
+char *_strncpy(char *, char *, int);
+char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
+
+
+char **strtow(char *, char *);
+char **strtow2(char *, char);
+
+
+char *_memset(char *, char, unsigned int);
+void ffree(char **);
+void *_realloc(void *, unsigned int, unsigned int);
+
+
+int bfree(void **);
+
+
+int interactive(info_type *);
+int is_delim(char, char *);
+int _isalpha(int);
+int _sti(char *);
+
+
+int _err_sti(char *);
+void print_error(info_type *, char *);
+int print_decimal(int, int);
+char *convert_number(long int, int, int);
+void remove_comments(char *);
+
+
+int _myexit(info_type *);
+int _mydir(info_type *);
+int _myhelp(info_type *);
+
+
+int _myhist(info_type *);
+int _myalias(info_type *);
+
 
 ssize_t input_buf(info_type *info, char **buf, size_t *len);
 ssize_t get_input(info_type *);

@@ -1,3 +1,4 @@
+#include "shell.h"
 
 /**
  * print_decimal - function prints a decimal (integer) number (base 10)
