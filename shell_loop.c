@@ -22,9 +22,17 @@ int hsh(info_type *info, char **av)
 		if (r != -1)
 		{
 			set_info(info, av);
+<<<<<<< HEAD
+			builtin_ret = find_builtin22(info);
+=======
 			builtin_ret = find_built(info);
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
 			if (builtin_ret == -1)
+<<<<<<< HEAD
+				find_commmd(info);
+=======
 				find_commd(info);
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
 		}
 		else if (interactive(info))
 			_puts_char('\n');
@@ -44,7 +52,11 @@ int hsh(info_type *info, char **av)
 }
 
 /**
+<<<<<<< HEAD
+ * find_builtin22 - finds a builtin command
+=======
  * find_built - finds a builtin command
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
  * @info: the parameter & return info struct
  *
  * Return: -1 if builtin not found,
@@ -52,7 +64,11 @@ int hsh(info_type *info, char **av)
  *			1 if builtin found but not successful,
  *			-2 if builtin signals exit()
  */
+<<<<<<< HEAD
+int find_builtin22(info_type *info)
+=======
 int find_built(info_type *info)
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {

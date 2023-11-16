@@ -1,11 +1,19 @@
 #include "shell.h"
 /**
+<<<<<<< HEAD
+ * find_commmd - finds a command in PATH
+=======
  * find_commd - finds a command in PATH
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
  * @info: the parameter & return info struct
  *
  * Return: void
  */
+<<<<<<< HEAD
+void find_commmd(info_type *info)
+=======
 void find_commd(info_type *info)
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
 {
 	char *path = NULL;
 	int i, k;
@@ -26,13 +34,22 @@ void find_commd(info_type *info)
 	if (path)
 	{
 		info->path = path;
+<<<<<<< HEAD
+		fork_commmand(info);
+=======
 		fork_commd(info);
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
 	}
 	else
 	{
 		if ((interactive(info) || _get_env(info, "PATH=")
+<<<<<<< HEAD
+			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+			fork_commmand(info);
+=======
 			|| info->argv[0][0] == '/') && is_commd(info, info->argv[0]))
 			fork_commd(info);
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
@@ -42,12 +59,20 @@ void find_commd(info_type *info)
 }
 #include "shell.h"
 /**
+<<<<<<< HEAD
+ * fork_commmand - forks a an exec thread to run cmd
+=======
  * fork_commd - forks a an exec thread to run cmd
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
  * @info: the parameter & return info struct
  *
  * Return: void
  */
+<<<<<<< HEAD
+void fork_commmand(info_type *info)
+=======
 void fork_commd(info_type *info)
+>>>>>>> 963ededd235ebe94b5f4c12bd1b6cfbd89932bca
 {
 	pid_t child_pid;
 
