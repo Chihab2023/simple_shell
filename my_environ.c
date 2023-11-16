@@ -1,13 +1,12 @@
 #include "shell.h"
-
 /**
- * _myenv - prints the current environment
+ * _myenvir - prints the current environment
  * @info: Structure containing potential arguments
  * Return: Always 0
  */
-int _myenv(info_type *info)
+int _myenvir(info_type *info)
 {
-	print_list_str(info->env);
+	prt_list_str(info->env);
 	return (0);
 }
 
@@ -42,26 +41,26 @@ int _mysetenv(info_type *info)
 {
 	if (info->argc != 3)
 	{
-		_eputs("Incorrect number of arguements\n");
+		_eput_str("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (_setenv(info, info->argv[1], info->argv[2]))
+	if (_setenviro(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (1);
 }
 
 /**
- * _myunsetenv - Remove an environment variable
+ * _my_unsetenv - Remove an environment variable
  * @info: Structure containing potential arguments
  *  Return: Always 0
  */
-int _myunsetenv(info_type *info)
+int _my_unsetenv(info_type *info)
 {
 	int i;
 
 	if (info->argc == 1)
 	{
-		_eputs("Too few arguements.\n");
+		_eput_str("Too few arguements.\n");
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
@@ -71,11 +70,11 @@ int _myunsetenv(info_type *info)
 }
 
 /**
- * populate_env_list - populates env linked list
+ * p_env_list - populates env linked list
  * @info: Structure containing potential arguments
  * Return: Always 0
  */
-int populate_env_list(info_type *info)
+int p_env_list(info_type *info)
 {
 	list_t *node = NULL;
 	size_t i;

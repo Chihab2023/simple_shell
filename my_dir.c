@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * _myexit - exits the shell
  * @info: Structure containing potential arguments
@@ -11,16 +10,16 @@ int _myexit(info_type *info)
 
 	if (info->argv[1])  
 	{
-		exit_check = _err_sti(info->argv[1]);
+		exit_check = _errors_sti(info->argv[1]);
 		if (exit_check == -1)
 		{
 			info->status = 2;
 			print_error(info, "Illegal number: ");
-			_eputs(info->argv[1]);
+			_eput_str(info->argv[1]);
 			_eputchar('\n');
 			return (1);
 		}
-		info->err_num = _err_sti(info->argv[1]);
+		info->err_num = _errors_sti(info->argv[1]);
 		return (-2);
 	}
 	info->err_num = -1;
@@ -49,7 +48,7 @@ int _mydir(info_type *info)
 		else
 			chdir_rt = chdir(dir);
 	}
-	else if (_strcmp(info->argv[1], "-") == 0)
+	else if (_str_comp(info->argv[1], "-") == 0)
 	{
 		if (!_get_env(info, "OLDPWD="))
 		{
@@ -66,12 +65,12 @@ int _mydir(info_type *info)
 	if (chdir_rt == -1)
 	{
 		print_error(info, "can't cd to ");
-		_eputs(info->argv[1]), _eputchar('\n');
+		_eput_str(info->argv[1]), _eputchar('\n');
 	}
 	else
 	{
-		_setenv(info, "OLDPWD", _get_env(info, "PWD="));
-		_setenv(info, "PWD", getcwd(buffer, 1024));
+		_setenviro(info, "OLDPWD", _get_env(info, "PWD="));
+		_setenviro(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }

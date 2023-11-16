@@ -1,12 +1,11 @@
 #include "shell.h"
-
 /**
- * _err_sti - converts a string to an integer
+ * _errors_sti - converts a string to an integer
  * @s: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
-int _err_sti(char *s)
+int _errors_sti(char *s)
 {
 	int i = 0;
 	unsigned long int result = 0;
@@ -37,13 +36,13 @@ int _err_sti(char *s)
  */
 void print_error(info_type *info, char *estr)
 {
-	_eputs(info->fname);
-	_eputs(": ");
+	_eput_str(info->fname);
+	_eput_str(": ");
 	print_decimal(info->line_count, STDERR_FILENO);
-	_eputs(": ");
-	_eputs(info->argv[0]);
-	_eputs(": ");
-	_eputs(estr);
+	_eput_str(": ");
+	_eput_str(info->argv[0]);
+	_eput_str(": ");
+	_eput_str(estr);
 }
 
 /**

@@ -1,12 +1,11 @@
 #include "shell.h"
-
 /**
- * _myhist - displays the history list, one command by line, preceded
+ * _myhistory - displays the history list, one command by line, preceded
  * with line numbers, starting at 0.
  * @info: Structure containing potential arguments
  *  Return: Always 0
  */
-int _myhist(info_type *info)
+int _myhistory(info_type *info)
 {
 	print_list(info->history);
 	return (0);
@@ -24,13 +23,13 @@ int unset_alias(info_type *info, char *str)
 	char *p, c;
 	int ret;
 
-	p = _strchr(str, '=');
+	p = _str_chr(str, '=');
 	if (!p)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = delete_node_at_index(&(info->alias),
-		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+	ret = delete_node(&(info->alias),
+		get_node(info->alias, node_starts_with(info->alias, str, -1)));
 	*p = c;
 	return (ret);
 }
@@ -46,7 +45,7 @@ int set_alias(info_type *info, char *str)
 {
 	char *p;
 
-	p = _strchr(str, '=');
+	p = _str_chr(str, '=');
 	if (!p)
 		return (1);
 	if (!*++p)
@@ -68,7 +67,7 @@ int print_alias(list_t *node)
 
 	if (node)
 	{
-		p = _strchr(node->str, '=');
+		p = _str_chr(node->str, '=');
 		for (a = node->str; a <= p; a++)
 			_putchar(*a);
 		_putchar('\'');
@@ -102,7 +101,7 @@ int _myalias(info_type *info)
 	}
 	for (i = 1; info->argv[i]; i++)
 	{
-		p = _strchr(info->argv[i], '=');
+		p = _str_chr(info->argv[i], '=');
 		if (p)
 			set_alias(info, info->argv[i]);
 		else

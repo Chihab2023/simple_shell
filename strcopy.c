@@ -1,21 +1,20 @@
 #include "shell.h"
-
 /**
- * _strcpy - copies a string
+ * _str_copy - copies a string
  * @dest: the destination
- * @src: the source
+ * @str_src: the source
  *
  * Return: pointer to destination
  */
-char *_strcpy(char *dest, char *src)
+char *_str_copy(char *dest, char *str_src)
 {
 	int i = 0;
 
-	if (dest == src || src == 0)
+	if (dest == str_src || str_src == 0)
 		return (dest);
-	while (src[i])
+	while (str_src[i])
 	{
-		dest[i] = src[i];
+		dest[i] = str_src[i];
 		i++;
 	}
 	dest[i] = 0;
@@ -23,12 +22,12 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * _strdup - duplicates a string
+ * _str_dup - duplicates a string
  * @str: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *_strdup(const char *str)
+char *_str_dup(const char *str)
 {
 	int length = 0;
 	char *ret;

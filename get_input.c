@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * input_buf - buffers chained commands
  * @info: parameter struct
@@ -33,7 +32,7 @@ ssize_t input_buf(info_type *info, char **buf, size_t *len)
 			}
 			info->linecount_flag = 1;
 			remove_comments(*buf);
-			build_history_list(info, *buf, info->histcount++);
+			build_history_l(info, *buf, info->histcount++);
 			
 			{
 				*len = r;
@@ -81,7 +80,7 @@ ssize_t get_input(info_type *info)
 		}
 
 		*buf_p = p; 
-		return (_strlen(p)); 
+		return (_strlength(p)); 
 	}
 
 	*buf_p = buf; 
@@ -134,7 +133,7 @@ int _getline(info_type *info, char **ptr, size_t *length)
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 
-	c = _strchr(buf + i, '\n');
+	c = _str_chr(buf + i, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
 	new_p = _realloc(p, s, s ? s + k : k + 1);
 	if (!new_p) 
@@ -143,7 +142,7 @@ int _getline(info_type *info, char **ptr, size_t *length)
 	if (s)
 		_strncat(new_p, buf + i, k - i);
 	else
-		_strncpy(new_p, buf + i, k - i + 1);
+		_strn_copy(new_p, buf + i, k - i + 1);
 
 	s += k - i;
 	i = k;

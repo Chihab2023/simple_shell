@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * get_env - returns the string array copy of our environ
  * @info: Structure containing potential arguments
@@ -9,7 +8,7 @@ char **get_env(info_type *info)
 {
 	if (!info->environ || info->env_changed)
 	{
-		info->environ = list_to_strings(info->env);
+		info->environ = list_to_str(info->env);
 		info->env_changed = 0;
 	}
 
@@ -36,7 +35,7 @@ int _unsetenv(info_type *info, char *var)
 		ptr = starts_with(node->str, var);
 		if (ptr && *ptr == '=')
 		{
-			info->env_changed = delete_node_at_index(&(info->env), i);
+			info->env_changed = delete_node(&(info->env), i);
 			i = 0;
 			node = info->env;
 			continue;
@@ -48,7 +47,7 @@ int _unsetenv(info_type *info, char *var)
 }
 
 /**
- * _setenv - Initialize a new environment variable,
+ * _setenviro - Initialize a new environment variable,
  *             or modify an existing one
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
@@ -56,7 +55,7 @@ int _unsetenv(info_type *info, char *var)
  * @value: the string env var value
  *  Return: Always 0
  */
-int _setenv(info_type *info, char *var, char *value)
+int _setenviro(info_type *info, char *var, char *value)
 {
 	char *buffer = NULL;
 	list_t *node;
@@ -65,12 +64,12 @@ int _setenv(info_type *info, char *var, char *value)
 	if (!var || !value)
 		return (0);
 
-	buffer = malloc(_strlen(var) + _strlen(value) + 2);
+	buffer = malloc(_strlength(var) + _strlength(value) + 2);
 	if (!buffer)
 		return (1);
-	_strcpy(buffer, var);
-	_strcat(buffer, "=");
-	_strcat(buffer, value);
+	_str_copy(buffer, var);
+	_str_cat(buffer, "=");
+	_str_cat(buffer, value);
 	node = info->env;
 	while (node)
 	{

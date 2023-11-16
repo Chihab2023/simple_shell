@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * interactive - returns true if shell is interactive mode
  * @info: struct address
@@ -26,12 +25,12 @@ int is_delim(char c, char *delim)
 }
 
 /**
- *_isalpha - checks for alphabetic character
+ *_is_alpha - checks for alphabetic character
  *@c: The character to input
  *Return: 1 if c is alphabetic, 0 otherwise
  */
 
-int _isalpha(int c)
+int _is_alpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
