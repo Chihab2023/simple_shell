@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
- * find_cmd - finds a command in PATH
+ * find_commd - finds a command in PATH
  * @info: the parameter & return info struct
  *
  * Return: void
  */
-void find_cmd(info_type *info)
+void find_commd(info_type *info)
 {
 	char *path = NULL;
 	int i, k;
@@ -26,13 +26,13 @@ void find_cmd(info_type *info)
 	if (path)
 	{
 		info->path = path;
-		fork_cmd(info);
+		fork_commd(info);
 	}
 	else
 	{
 		if ((interactive(info) || _get_env(info, "PATH=")
-			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
-			fork_cmd(info);
+			|| info->argv[0][0] == '/') && is_commd(info, info->argv[0]))
+			fork_commd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
@@ -42,12 +42,12 @@ void find_cmd(info_type *info)
 }
 #include "shell.h"
 /**
- * fork_cmd - forks a an exec thread to run cmd
+ * fork_commd - forks a an exec thread to run cmd
  * @info: the parameter & return info struct
  *
  * Return: void
  */
-void fork_cmd(info_type *info)
+void fork_commd(info_type *info)
 {
 	pid_t child_pid;
 

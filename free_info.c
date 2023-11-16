@@ -21,9 +21,9 @@ void free_info(info_type *info, int all)
 			free_list(&(info->alias));
 		ffree(info->environ);
 			info->environ = NULL;
-		bfree((void **)info->cmd_buf);
+		buf_free((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
-		_putchar(BUF_FLUSH);
+		_puts_char(BUF_FLUSH);
 	}
 }

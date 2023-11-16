@@ -8,16 +8,16 @@
  */
 int print_decimal(int input, int fd)
 {
-	int (*__putchar)(char) = _putchar;
+	int (*__puts_char)(char) = _puts_char;
 	int i, c = 0;
 	unsigned int _abs_, current;
 
 	if (fd == STDERR_FILENO)
-		__putchar = _eputchar;
+		__puts_char = _eputchar;
 	if (input < 0)
 	{
 		_abs_ = -input;
-		__putchar('-');
+		__puts_char('-');
 		c++;
 	}
 	else
@@ -27,12 +27,12 @@ int print_decimal(int input, int fd)
 	{
 		if (_abs_ / i)
 		{
-			__putchar('0' + current / i);
+			__puts_char('0' + current / i);
 			c++;
 		}
 		current %= i;
 	}
-	__putchar('0' + current);
+	__puts_char('0' + current);
 	c++;
 
 	return (c);
@@ -75,12 +75,12 @@ char *convert_number(long int num, int base, int flags)
 }
 
 /**
- * remove_comments - function replaces first instance of '#' with '\0'
+ * remove_cmnt - function replaces first instance of '#' with '\0'
  * @buf: address of the string to modify
  *
  * Return: Always 0;
  */
-void remove_comments(char *buf)
+void remove_cmnt(char *buf)
 {
 	int i;
 

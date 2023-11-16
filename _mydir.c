@@ -21,15 +21,15 @@ int _mydir(info_type *info)
 		else
 			chdir_rt = chdir(dir);
 	}
-	else if (_strcmp(info->argv[1], "-") == 0)
+	else if (_str_cmp(info->argv[1], "-") == 0)
 	{
 		if (!_get_env(info, "OLDPWD="))
 		{
 			_puts(s);
-			_putchar('\n');
+			_puts_char('\n');
 			return (1);
 		}
-		_puts(_get_env(info, "OLDPWD=")), _putchar('\n');
+		_puts(_get_env(info, "OLDPWD=")), _puts_char('\n');
 		chdir_rt = 
 			chdir((dir = _get_env(info, "OLDPWD=")) ? dir : "/");
 	}

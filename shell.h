@@ -24,7 +24,7 @@ typedef struct liststr
 	struct liststr *next;
 } list_t;
 /**
- *struct passinfo - contains pseudo-arguements to pass into a function,
+ *struct _pass_info - contains pseudo-arguements to pass into a function,
  *		allowing uniform prototype for function pointer struct
  *@arg: a string generated from getline containing arguements
  *@argv: an array of strings generated from arg
@@ -45,7 +45,7 @@ typedef struct liststr
  *@readfd: the fd from which to read line input
  *@histcount: the history line number count
  */
-typedef struct passinfo
+typedef struct _pass_info
 {
 	char *arg;
 	char **argv;
@@ -76,21 +76,21 @@ typedef struct passinfo
  *@type: the builtin command flag
  *@func: the function
  */
-typedef struct builtin
+typedef struct builtin_t
 {
 	char *type;
 	int (*func)(info_type *);
 } builtin_table;
 
 int hsh(info_type *, char **);
-int find_builtin(info_type *);
-void find_cmd(info_type *);
-void fork_cmd(info_type *);
+int find_built(info_type *);
+void find_commd(info_type *);
+void fork_commd(info_type *);
 
 int _strlen(char *);
-int _strcmp(char *, char *);
+int _str_cmp(char *, char *);
 char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+char *_str_cat(char *, char *);
 
 
 
@@ -98,7 +98,7 @@ char *_strcat(char *, char *);
 
 
 
-int is_cmd(info_type *, char *);
+int is_commd(info_type *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_type *, char *, char *);
 
@@ -115,19 +115,19 @@ int _putsfd(char *str, int fd);
 
 
 
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
+char *_str_copy(char *, char *);
+char *_strdupli(const char *);
 void _puts(char *);
-int _putchar(char);
+int _puts_char(char);
 
 
-char *_strncpy(char *, char *, int);
+char *_strn_copy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
 
-char **strtow(char *, char *);
-char **strtow2(char *, char);
+char **str_tow(char *, char *);
+char **str_tow2(char *, char);
 
 
 char *_memset(char *, char, unsigned int);
@@ -135,12 +135,12 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
 
-int bfree(void **);
+int buf_free(void **);
 
 
 int interactive(info_type *);
 int is_delim(char, char *);
-int _isalpha(int);
+int _is_alphab(int);
 int _sti(char *);
 
 
@@ -148,7 +148,7 @@ int _err_sti(char *);
 void print_error(info_type *, char *);
 int print_decimal(int, int);
 char *convert_number(long int, int, int);
-void remove_comments(char *);
+void remove_cmnt(char *);
 
 
 int _myexit(info_type *);

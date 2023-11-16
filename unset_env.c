@@ -52,9 +52,9 @@ int _setenv(info_type *info, char *var, char *value)
 	buffer = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buffer)
 		return (1);
-	_strcpy(buffer, var);
-	_strcat(buffer, "=");
-	_strcat(buffer, value);
+	_str_copy(buffer, var);
+	_str_cat(buffer, "=");
+	_str_cat(buffer, value);
 	node = info->env;
 	while (node)
 	{

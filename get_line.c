@@ -12,7 +12,7 @@ ssize_t get_input(info_type *info)
 	ssize_t r = 0;
 	char **buf_p = &(info->arg), *p;
 
-	_putchar(BUF_FLUSH);
+	_puts_char(BUF_FLUSH);
 	r = input_buf(info, &buf, &len);
 	if (r == -1) 
 		return (-1);
@@ -98,7 +98,7 @@ int _getline(info_type *info, char **ptr, size_t *length)
 	if (s)
 		_strncat(new_p, buf + i, k - i);
 	else
-		_strncpy(new_p, buf + i, k - i + 1);
+		_strn_copy(new_p, buf + i, k - i + 1);
 
 	s += k - i;
 	i = k;
@@ -120,5 +120,5 @@ void sigintHandler(__attribute__((unused))int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");
-	_putchar(BUF_FLUSH);
+	_puts_char(BUF_FLUSH);
 }
